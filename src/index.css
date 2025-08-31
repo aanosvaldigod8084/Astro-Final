@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Cosmic Theme Colors */
+    --background: 230 35% 7%;
+    --foreground: 47 100% 85%;
+
+    --card: 235 25% 12%;
+    --card-foreground: 47 100% 85%;
+
+    --popover: 235 25% 12%;
+    --popover-foreground: 47 100% 85%;
+
+    --primary: 47 100% 70%;
+    --primary-foreground: 230 35% 7%;
+
+    --secondary: 260 30% 20%;
+    --secondary-foreground: 47 100% 85%;
+
+    --muted: 235 20% 15%;
+    --muted-foreground: 47 50% 60%;
+
+    --accent: 260 60% 45%;
+    --accent-foreground: 47 100% 85%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 235 20% 25%;
+    --input: 235 20% 15%;
+    --ring: 47 100% 70%;
+
+    --radius: 0.75rem;
+
+    /* Cosmic Design Tokens */
+    --cosmic-gold: 47 100% 70%;
+    --cosmic-gold-light: 47 100% 85%;
+    --cosmic-blue: 230 35% 7%;
+    --cosmic-blue-light: 235 25% 12%;
+    --cosmic-purple: 260 60% 45%;
+    --cosmic-purple-light: 260 30% 20%;
+    --cosmic-text: 47 100% 85%;
+    --cosmic-text-muted: 47 50% 60%;
+
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(var(--cosmic-blue)), hsl(var(--cosmic-purple)));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--cosmic-gold)), hsl(var(--cosmic-gold-light)));
+    --gradient-stellar: linear-gradient(180deg, hsl(var(--cosmic-blue)), hsl(var(--cosmic-blue-light)));
+
+    /* Effects */
+    --glow-gold: 0 0 20px hsl(var(--cosmic-gold) / 0.3);
+    --glow-purple: 0 0 30px hsl(var(--cosmic-purple) / 0.4);
+    --shadow-cosmic: 0 8px 32px hsl(var(--cosmic-blue) / 0.8);
+
+    --sidebar-background: 235 25% 12%;
+    --sidebar-foreground: 47 100% 85%;
+    --sidebar-primary: 47 100% 70%;
+    --sidebar-primary-foreground: 230 35% 7%;
+    --sidebar-accent: 260 30% 20%;
+    --sidebar-accent-foreground: 47 100% 85%;
+    --sidebar-border: 235 20% 25%;
+    --sidebar-ring: 47 100% 70%;
+  }
+
+  .light {
+    /* Light mode uses same cosmic theme for consistency */
+    --background: 230 35% 7%;
+    --foreground: 47 100% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+    background: var(--gradient-cosmic);
+    min-height: 100vh;
+  }
+
+  /* Cosmic starfield animation */
+  .starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes sparkle {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-100px); }
+  }
+}
+
+@layer components {
+  .cosmic-glow {
+    box-shadow: var(--glow-gold);
+  }
+  
+  .cosmic-glow-purple {
+    box-shadow: var(--glow-purple);
+  }
+  
+  .stellar-gradient {
+    background: var(--gradient-stellar);
+  }
+  
+  .gold-gradient {
+    background: var(--gradient-gold);
+  }
+}
